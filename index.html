@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -37,7 +36,7 @@ h2{font-size:1.4rem;letter-spacing:-.5px}
 h3{font-size:1rem;margin-bottom:12px}
 .muted{font-size:.85rem;color:var(--muted)}
 .grid{display:grid;gap:15px}
-.stats{grid-template-columns:repeat(4,minmax(0,1fr))}
+.stats{grid-template-columns:repeat(3,minmax(0,1fr))}
 .two{grid-template-columns:repeat(2,minmax(0,1fr))}
 .card{min-width:0;background:var(--panel);border:1px solid var(--border);border-radius:17px;padding:20px}
 .stat-label{color:var(--muted);font-size:.82rem}
@@ -92,15 +91,28 @@ footer{border-top:1px solid var(--border);padding:28px 0;margin-top:40px;color:v
 .footer-row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 #toast{position:fixed;z-index:99;bottom:20px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--green);color:#14200c;padding:11px 17px;border-radius:11px;font-weight:750;box-shadow:0 8px 30px #0006;transition:.2s;max-width:90%;text-align:center}
 #toast.show{opacity:1;transform:translate(-50%,0)}
-@media(max-width:850px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.two{grid-template-columns:1fr}}
-@media(max-width:500px){.nav{align-items:flex-start;flex-direction:column;gap:8px}nav{gap:12px}.hero{padding-top:35px}h1{letter-spacing:-1.5px}.card{padding:15px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.entry{align-items:flex-start}.entry-right{flex-direction:column;align-items:flex-end}}
+@media(max-width:850px){
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .two{grid-template-columns:1fr}
+}
+@media(max-width:500px){
+  .nav{align-items:flex-start;flex-direction:column;gap:8px}
+  nav{gap:12px}
+  .hero{padding-top:35px}
+  h1{letter-spacing:-1.5px}
+  .card{padding:15px}
+  .form-grid{grid-template-columns:1fr}
+  .field.full{grid-column:auto}
+  .entry{align-items:flex-start}
+  .entry-right{flex-direction:column;align-items:flex-end}
+}
 </style>
 </head>
 
 <body>
 <header>
   <div class="container nav">
-    <a class="logo" href="#">Fit<span>Calc.</span></a>
+    <a class="logo" href="#">Fit<span>Calc</span></a>
     <nav>
       <a href="#painel">Painel</a>
       <a href="#alimentacao">Alimentação</a>
@@ -116,7 +128,7 @@ footer{border-top:1px solid var(--border);padding:28px 0;margin-top:40px;color:v
   <section class="hero">
     <div class="eyebrow">Sua rotina, seus resultados</div>
     <h1>Construa sua evolução.<br><span>Um dia de cada vez.</span></h1>
-    <p>Registre refeições e atividades, acompanhe cinco indicadores nutricionais e consulte seu histórico diário. Tudo salvo no seu navegador.</p>
+    <p>Registre refeições e atividades, e acompanhe seu histórico diário.</p>
     <div class="actions">
       <a class="btn primary" href="#alimentacao">Registrar refeição</a>
       <a class="btn secondary" href="#historico">Ver histórico</a>
@@ -145,22 +157,40 @@ footer{border-top:1px solid var(--border);padding:28px 0;margin-top:40px;color:v
     </div>
 
     <div class="grid stats">
-      <div class="card"><div class="stat-label">Calorias consumidas</div><div class="stat-value" id="totalCalories">0 <span>kcal</span></div><div class="stat-foot">Alimentos registrados</div></div>
-      <div class="card"><div class="stat-label">Proteínas</div><div class="stat-value" id="totalProtein">0 <span>g</span></div><div class="stat-foot">Consumo no dia</div></div>
-      <div class="card"><div class="stat-label">Carboidratos</div><div class="stat-value" id="totalCarbs">0 <span>g</span></div><div class="stat-foot">Consumo no dia</div></div>
-      <div class="card"><div class="stat-label">Gorduras</div><div class="stat-value" id="totalFat">0 <span>g</span></div><div class="stat-foot">Consumo no dia</div></div>
-    </div>
+      <div class="card">
+        <div class="stat-label">Calorias consumidas</div>
+        <div class="stat-value" id="totalCalories">0 <span>kcal</span></div>
+        <div class="stat-foot">Alimentos registrados</div>
+      </div>
 
-    <div class="grid two" style="margin-top:15px">
+      <div class="card">
+        <div class="stat-label">Proteínas</div>
+        <div class="stat-value" id="totalProtein">0 <span>g</span></div>
+        <div class="stat-foot">Consumo no dia</div>
+      </div>
+
+      <div class="card">
+        <div class="stat-label">Carboidratos</div>
+        <div class="stat-value" id="totalCarbs">0 <span>g</span></div>
+        <div class="stat-foot">Consumo no dia</div>
+      </div>
+
+      <div class="card">
+        <div class="stat-label">Gorduras</div>
+        <div class="stat-value" id="totalFat">0 <span>g</span></div>
+        <div class="stat-foot">Consumo no dia</div>
+      </div>
+
       <div class="card">
         <div class="stat-label">Fibras alimentares</div>
         <div class="stat-value" id="totalFiber">0 <span>g</span></div>
         <div class="stat-foot">Consumo no dia</div>
       </div>
+
       <div class="card">
-        <div class="stat-label">Gasto estimado em exercícios</div>
-        <div class="stat-value" id="totalExercise">0 <span>kcal</span></div>
-        <div class="stat-foot">Não representa o gasto energético total diário.</div>
+        <div class="stat-label">Gasto diário estimado (TDEE)</div>
+        <div class="stat-value" id="totalTDEE">— <span>kcal</span></div>
+        <div class="stat-foot">Estimativa do gasto energético total por dia</div>
       </div>
     </div>
   </section>
@@ -255,7 +285,7 @@ footer{border-top:1px solid var(--border);padding:28px 0;margin-top:40px;color:v
         <h3>Resultado estimado</h3>
         <div class="result"><p class="muted">Metabolismo basal (TMB)</p><strong id="tmbResult">— kcal/dia</strong></div>
         <div class="result"><p class="muted">Gasto energético diário (TDEE)</p><strong id="tdeeResult">— kcal/dia</strong></div>
-        <p class="notice">A fórmula de Mifflin–St Jeor foi desenvolvida para adultos. Em adolescentes, o crescimento altera as necessidades energéticas; não use esses resultados isoladamente para definir restrições alimentares ou metas de peso.</p>
+        <p class="notice">Em adolescentes, o crescimento altera as necessidades energéticas; não use esses resultados isoladamente para definir restrições alimentares ou metas de peso.</p>
       </div>
     </div>
   </section>
@@ -310,7 +340,7 @@ footer{border-top:1px solid var(--border);padding:28px 0;margin-top:40px;color:v
   </section>
 </main>
 
-<footer><div class="container footer-row"><strong>FitCalc.</strong><span>Nutrição, atividade e histórico local.</span></div></footer>
+<footer><div class="container footer-row"><strong>FitCalc</strong><span><a href="https://www.instagram.com/trivelati.lucs?dlrf=N2ZyeGJsbG01cHQ=" style="color:#55ff58">@trivelati.lucs</a><br>trivelatilucas@gmail.com</span></div></footer>
 <div id="toast" role="status" aria-live="polite"></div>
 
 <script>
@@ -329,7 +359,7 @@ const defaultFoods = [
   {id:"potato",name:"Batata inglesa cozida",calories:52,protein:1.2,carbs:11.9,fiber:1.3,fat:0.1,unit:"g"},
   {id:"sweet-potato",name:"Batata-doce cozida",calories:77,protein:0.6,carbs:18.4,fiber:2.2,fat:0.1,unit:"g"},
   {id:"bread",name:"Pão de forma",calories:265,protein:9,carbs:49,fiber:2.7,fat:3.2,unit:"g"},
-  {id:"french-bread",name:"Pão francês",calories:300,protein:8,carbs:58.6,fiber:2.3,fat:3.1,unit:"g"},
+  {id:"french-bread",name:"Pão francês",calories:280,protein:7,carbs:50.6,fiber:2.3,fat:3.1,unit:"g"},
   {id:"oats",name:"Aveia em flocos",calories:389,protein:16.9,carbs:66.3,fiber:10.6,fat:6.9,unit:"g"},
   {id:"whole-milk",name:"Leite integral",calories:61,protein:3.2,carbs:4.8,fiber:0,fat:3.3,unit:"ml"},
   {id:"skim-milk",name:"Leite desnatado",calories:35,protein:3.4,carbs:5,fiber:0,fat:0.2,unit:"ml"},
@@ -399,8 +429,6 @@ function normalizeFood(item, isEntry = false) {
     ? defaultFoods.find(f => f.id === item.foodId)
     : null;
 
-  // Registros da versão antiga não continham todos os nutrientes.
-  // Recuperamos os valores do banco quando possível.
   const base = food || {};
   const quantity = Number(item.quantity) || 0;
   const oldCustom = !food && isEntry ? null : item;
@@ -445,7 +473,6 @@ function loadState() {
       ...item,date:dateFromEntry(item)
     }));
 
-    // Compatibilidade com a versão anterior: novas metas começam vazias.
     state.goals = {
       calories:state.goals.calories ?? "",
       protein:state.goals.protein ?? "",
@@ -776,7 +803,7 @@ $("exerciseForm").addEventListener("submit",event=>{
   if (type==="custom") {
     name=$("customExerciseName").value.trim();
     if (!name) {showToast("Informe o nome da atividade.");return;}
-    met=4; // Suposição genérica para atividade personalizada.
+    met=4;
   } else {
     name=exerciseTypes[type].name;
     met=exerciseTypes[type].met;
@@ -842,8 +869,10 @@ function populateProfile() {
 }
 
 function calculateMetabolism() {
-  const age=n(state.profile.age),height=n(state.profile.height);
-  const weight=n(state.profile.weight),factor=n(state.profile.activityLevel);
+  const age=n(state.profile.age);
+  const height=n(state.profile.height);
+  const weight=n(state.profile.weight);
+  const factor=n(state.profile.activityLevel);
 
   if (!(age>0&&height>0&&weight>0&&factor>0)) {
     $("tmbResult").textContent="— kcal/dia";
@@ -853,8 +882,10 @@ function calculateMetabolism() {
 
   const constant=state.profile.sex==="male"?5:-161;
   const tmb=10*weight+6.25*height-5*age+constant;
+  const tdee=tmb*factor;
+
   $("tmbResult").textContent=`${fmt(tmb,0)} kcal/dia`;
-  $("tdeeResult").textContent=`${fmt(tmb*factor,0)} kcal/dia`;
+  $("tdeeResult").textContent=`${fmt(tdee,0)} kcal/dia`;
 }
 
 $("profileForm").addEventListener("submit",event=>{
@@ -876,7 +907,9 @@ $("profileForm").addEventListener("submit",event=>{
   };
 
   if (!saveState()) {state.profile=previous;return;}
+
   calculateMetabolism();
+  renderDashboard();
   showToast("Dados da calculadora salvos!");
 });
 
@@ -913,10 +946,12 @@ $("goalsForm").addEventListener("submit",event=>{
   for (const [key,id] of Object.entries(goalFields)) {
     const raw=$(id).value;
     const value=Number(raw);
+
     if (raw!==""&&(!Number.isFinite(value)||value<0||value>20000)) {
       showToast("Confira os valores das metas.");
       return;
     }
+
     next[key]=raw;
   }
 
@@ -930,6 +965,7 @@ $("goalsForm").addEventListener("submit",event=>{
 
 function renderProgress(totals) {
   const list=$("progressList");
+
   list.innerHTML=Object.entries(nutrientLabels).map(([key,info])=>{
     const goal=n(state.goals[key]);
     const current=n(totals[key]);
@@ -939,6 +975,7 @@ function renderProgress(totals) {
     }
 
     const percentage=Math.min(100,current/goal*100);
+
     return `
       <div class="progress-item">
         <div class="progress-top"><span>${info.label}</span><span>${fmt(current)} / ${fmt(goal)} ${info.unit} · ${fmt(current/goal*100,0)}%</span></div>
@@ -959,7 +996,22 @@ function renderDashboard() {
   $("totalCarbs").innerHTML=`${fmt(totals.carbs)} <span>g</span>`;
   $("totalFiber").innerHTML=`${fmt(totals.fiber)} <span>g</span>`;
   $("totalFat").innerHTML=`${fmt(totals.fat)} <span>g</span>`;
-  $("totalExercise").innerHTML=`${fmt(totals.exercise,0)} <span>kcal</span>`;
+
+  // O TDEE é estimado com os dados salvos na calculadora metabólica.
+  const age=n(state.profile.age);
+  const height=n(state.profile.height);
+  const weight=n(state.profile.weight);
+  const factor=n(state.profile.activityLevel);
+
+  if (age>0&&height>0&&weight>0&&factor>0) {
+    const constant=state.profile.sex==="male"?5:-161;
+    const tmb=10*weight+6.25*height-5*age+constant;
+    const tdee=tmb*factor;
+
+    $("totalTDEE").innerHTML=`${fmt(tdee,0)} <span>kcal</span>`;
+  } else {
+    $("totalTDEE").innerHTML=`— <span>kcal</span>`;
+  }
 
   renderProgress(totals);
 }
@@ -1163,7 +1215,6 @@ function initialize() {
   populateProfile();
   populateGoals();
 
-  // Persiste a migração de dados antigos para o formato novo.
   saveState();
 
   searchFoods();
