@@ -53,6 +53,7 @@ input::placeholder{color:#647064}
 option{background:var(--panel)}
 .btn{border:0;border-radius:10px;padding:10px 14px;font-weight:750;transition:.15s}
 .btn:hover{filter:brightness(1.1)}
+.btn:focus-visible,a:focus-visible{outline:2px solid var(--green);outline-offset:3px}
 .primary{background:var(--green);color:#14200c}
 .secondary{background:var(--panel2);border:1px solid var(--border);color:var(--text)}
 .danger{background:#351d1d;color:#ffaaaa;border:1px solid #573030}
@@ -113,7 +114,7 @@ footer{border-top:1px solid var(--border);padding:28px 0;margin-top:40px;color:v
 <header>
   <div class="container nav">
     <a class="logo" href="#">Fit<span>Calc</span></a>
-    <nav>
+    <nav aria-label="Navegação principal">
       <a href="#painel">Painel</a>
       <a href="#alimentacao">Alimentação</a>
       <a href="#exercicios">Exercícios</a>
@@ -157,49 +158,17 @@ footer{border-top:1px solid var(--border);padding:28px 0;margin-top:40px;color:v
     </div>
 
     <div class="grid stats">
-      <div class="card">
-        <div class="stat-label">Calorias consumidas</div>
-        <div class="stat-value" id="totalCalories">0 <span>kcal</span></div>
-        <div class="stat-foot">Alimentos registrados</div>
-      </div>
-
-      <div class="card">
-        <div class="stat-label">Proteínas</div>
-        <div class="stat-value" id="totalProtein">0 <span>g</span></div>
-        <div class="stat-foot">Consumo no dia</div>
-      </div>
-
-      <div class="card">
-        <div class="stat-label">Carboidratos</div>
-        <div class="stat-value" id="totalCarbs">0 <span>g</span></div>
-        <div class="stat-foot">Consumo no dia</div>
-      </div>
-
-      <div class="card">
-        <div class="stat-label">Gorduras</div>
-        <div class="stat-value" id="totalFat">0 <span>g</span></div>
-        <div class="stat-foot">Consumo no dia</div>
-      </div>
-
-      <div class="card">
-        <div class="stat-label">Fibras alimentares</div>
-        <div class="stat-value" id="totalFiber">0 <span>g</span></div>
-        <div class="stat-foot">Consumo no dia</div>
-      </div>
-
-      <div class="card">
-        <div class="stat-label">Gasto diário estimado (TDEE)</div>
-        <div class="stat-value" id="totalTDEE">— <span>kcal</span></div>
-        <div class="stat-foot">Estimativa do gasto energético total por dia</div>
-      </div>
+      <div class="card"><div class="stat-label">Calorias consumidas</div><div class="stat-value" id="totalCalories">0 <span>kcal</span></div><div class="stat-foot">Alimentos registrados</div></div>
+      <div class="card"><div class="stat-label">Proteínas</div><div class="stat-value" id="totalProtein">0 <span>g</span></div><div class="stat-foot">Consumo no dia</div></div>
+      <div class="card"><div class="stat-label">Carboidratos</div><div class="stat-value" id="totalCarbs">0 <span>g</span></div><div class="stat-foot">Consumo no dia</div></div>
+      <div class="card"><div class="stat-label">Gorduras</div><div class="stat-value" id="totalFat">0 <span>g</span></div><div class="stat-foot">Consumo no dia</div></div>
+      <div class="card"><div class="stat-label">Fibras alimentares</div><div class="stat-value" id="totalFiber">0 <span>g</span></div><div class="stat-foot">Consumo no dia</div></div>
+      <div class="card"><div class="stat-label">Gasto diário estimado (TDEE)</div><div class="stat-value" id="totalTDEE">— <span>kcal</span></div><div class="stat-foot">Estimativa do gasto energético total por dia</div></div>
     </div>
   </section>
 
   <section class="section" id="alimentacao">
-    <div class="heading">
-      <div><h2>Alimentação</h2><p class="muted">Pesquise, selecione e informe a quantidade.</p></div>
-    </div>
-
+    <div class="heading"><div><h2>Alimentação</h2><p class="muted">Pesquise, selecione e informe a quantidade.</p></div></div>
     <div class="grid two">
       <div class="card">
         <h3>Adicionar alimento</h3>
@@ -209,9 +178,8 @@ footer{border-top:1px solid var(--border);padding:28px 0;margin-top:40px;color:v
         </div>
         <div id="foodResults" class="search-results"></div>
         <div id="selectedFood" class="selected"></div>
-        <div class="notice">Os valores são aproximados por 100 g ou 100 ml. O alimento pode variar conforme marca, preparo e receita.</div>
+        <div class="notice">Valores aproximados por 100 g ou 100 ml. O alimento pode variar conforme marca, preparo e receita.</div>
       </div>
-
       <div class="card">
         <h3>Registros do dia selecionado</h3>
         <div id="foodList" class="entry-list"></div>
@@ -260,10 +228,7 @@ footer{border-top:1px solid var(--border);padding:28px 0;margin-top:40px;color:v
         </form>
         <div class="notice">O gasto é uma estimativa baseada em MET, peso e duração. Não desconte automaticamente esse valor da alimentação nem o interprete como medição exata.</div>
       </div>
-      <div class="card">
-        <h3>Atividades do dia</h3>
-        <div id="exerciseList" class="entry-list"></div>
-      </div>
+      <div class="card"><h3>Atividades do dia</h3><div id="exerciseList" class="entry-list"></div></div>
     </div>
   </section>
 
@@ -340,7 +305,7 @@ footer{border-top:1px solid var(--border);padding:28px 0;margin-top:40px;color:v
   </section>
 </main>
 
-<footer><div class="container footer-row"><strong>FitCalc</strong><span><a href="https://www.instagram.com/trivelati.lucs?dlrf=N2ZyeGJsbG01cHQ=" style="color:#55ff58">@trivelati.lucs</a><br>trivelatilucas@gmail.com</span></div></footer>
+<footer><div class="container footer-row"><strong>FitCalc</strong><span><a href="https://www.instagram.com/trivelati.lucs/" style="color:#55ff58">@trivelati.lucs</a><br>trivelatilucas@gmail.com</span></div></footer>
 <div id="toast" role="status" aria-live="polite"></div>
 
 <script>
@@ -348,16 +313,20 @@ footer{border-top:1px solid var(--border);padding:28px 0;margin-top:40px;color:v
 
 // ============================================================
 // BANCO NUTRICIONAL: valores aproximados por 100 g ou 100 ml.
-// carbs = carboidratos totais; fiber = fibras; fat = gorduras.
+// Os valores variam conforme marca, variedade e preparo.
 // ============================================================
 
 const defaultFoods = [
   {id:"rice-white",name:"Arroz branco cozido",calories:130,protein:2.7,carbs:28.2,fiber:0.4,fat:0.3,unit:"g"},
   {id:"rice-brown",name:"Arroz integral cozido",calories:124,protein:2.6,carbs:25.8,fiber:2.7,fat:1,unit:"g"},
   {id:"beans",name:"Feijão carioca cozido",calories:76,protein:4.8,carbs:13.6,fiber:8.5,fat:0.5,unit:"g"},
+  {id:"black-beans",name:"Feijão preto cozido",calories:77,protein:4.5,carbs:14,fiber:8.4,fat:0.5,unit:"g"},
+  {id:"lentils",name:"Lentilha cozida",calories:93,protein:6.3,carbs:16.3,fiber:7.9,fat:0.4,unit:"g"},
+  {id:"chickpeas",name:"Grão-de-bico cozido",calories:164,protein:8.9,carbs:27.4,fiber:7.6,fat:2.6,unit:"g"},
   {id:"pasta",name:"Macarrão cozido",calories:158,protein:5.8,carbs:30.9,fiber:1.8,fat:0.9,unit:"g"},
   {id:"potato",name:"Batata inglesa cozida",calories:52,protein:1.2,carbs:11.9,fiber:1.3,fat:0.1,unit:"g"},
   {id:"sweet-potato",name:"Batata-doce cozida",calories:77,protein:0.6,carbs:18.4,fiber:2.2,fat:0.1,unit:"g"},
+  {id:"cassava",name:"Mandioca cozida",calories:125,protein:0.6,carbs:30.1,fiber:1.6,fat:0.3,unit:"g"},
   {id:"bread",name:"Pão de forma",calories:265,protein:9,carbs:49,fiber:2.7,fat:3.2,unit:"g"},
   {id:"french-bread",name:"Pão francês",calories:280,protein:7,carbs:50.6,fiber:2.3,fat:3.1,unit:"g"},
   {id:"oats",name:"Aveia em flocos",calories:389,protein:16.9,carbs:66.3,fiber:10.6,fat:6.9,unit:"g"},
@@ -365,12 +334,19 @@ const defaultFoods = [
   {id:"skim-milk",name:"Leite desnatado",calories:35,protein:3.4,carbs:5,fiber:0,fat:0.2,unit:"ml"},
   {id:"milk-powder",name:"Leite em pó integral",calories:496,protein:26,carbs:38,fiber:0,fat:27,unit:"g"},
   {id:"yogurt",name:"Iogurte natural integral",calories:61,protein:3.5,carbs:4.7,fiber:0,fat:3.3,unit:"g"},
+  {id:"greek-yogurt",name:"Iogurte tipo grego natural",calories:120,protein:5,carbs:8,fiber:0,fat:7,unit:"g"},
   {id:"cheese",name:"Queijo muçarela",calories:300,protein:22,carbs:3,fiber:0,fat:22,unit:"g"},
+  {id:"minas-cheese",name:"Queijo minas frescal",calories:264,protein:17.4,carbs:3.2,fiber:0,fat:20.2,unit:"g"},
+  {id:"cottage",name:"Queijo cottage",calories:98,protein:11.1,carbs:3.4,fiber:0,fat:4.3,unit:"g"},
   {id:"chicken",name:"Filé de frango grelhado",calories:159,protein:32,carbs:0,fiber:0,fat:3.2,unit:"g"},
+  {id:"chicken-raw",name:"Peito de frango cru",calories:120,protein:22.5,carbs:0,fiber:0,fat:2.6,unit:"g"},
   {id:"beef",name:"Carne bovina magra grelhada",calories:217,protein:30,carbs:0,fiber:0,fat:10,unit:"g"},
   {id:"ground-beef",name:"Carne moída magra cozida",calories:215,protein:26,carbs:0,fiber:0,fat:12,unit:"g"},
+  {id:"pork",name:"Lombo suíno assado",calories:196,protein:29,carbs:0,fiber:0,fat:8,unit:"g"},
   {id:"egg",name:"Ovo inteiro cozido",calories:155,protein:13,carbs:1.1,fiber:0,fat:11,unit:"g"},
+  {id:"egg-white",name:"Clara de ovo cozida",calories:52,protein:11,carbs:0.7,fiber:0,fat:0.2,unit:"g"},
   {id:"fish",name:"Tilápia grelhada",calories:128,protein:26,carbs:0,fiber:0,fat:2.7,unit:"g"},
+  {id:"salmon",name:"Salmão grelhado",calories:206,protein:22,carbs:0,fiber:0,fat:12,unit:"g"},
   {id:"tuna",name:"Atum em água escorrido",calories:116,protein:26,carbs:0,fiber:0,fat:0.8,unit:"g"},
   {id:"banana",name:"Banana",calories:89,protein:1.1,carbs:22.8,fiber:2.6,fat:0.3,unit:"g"},
   {id:"apple",name:"Maçã com casca",calories:52,protein:0.3,carbs:13.8,fiber:2.4,fat:0.2,unit:"g"},
@@ -392,6 +368,7 @@ const defaultFoods = [
   {id:"olive-oil",name:"Azeite de oliva",calories:884,protein:0,carbs:0,fiber:0,fat:100,unit:"g"},
   {id:"sugar",name:"Açúcar",calories:400,protein:0,carbs:100,fiber:0,fat:0,unit:"g"},
   {id:"honey",name:"Mel",calories:304,protein:0.3,carbs:82.4,fiber:0.2,fat:0,unit:"g"},
+
   // FRUTAS
   {id:"pear",name:"Pera",calories:57,protein:0.4,carbs:15.2,fiber:3.1,fat:0.1,unit:"g"},
   {id:"mango",name:"Manga",calories:60,protein:0.8,carbs:15,fiber:1.6,fat:0.4,unit:"g"},
@@ -406,9 +383,17 @@ const defaultFoods = [
   {id:"coconut",name:"Coco fresco",calories:354,protein:3.3,carbs:15.2,fiber:9,fat:33.5,unit:"g"},
   {id:"raisins",name:"Uva-passa",calories:299,protein:3.1,carbs:79.2,fiber:3.7,fat:0.5,unit:"g"},
   {id:"dried-apricot",name:"Damasco seco",calories:241,protein:3.4,carbs:62.6,fiber:7.3,fat:0.5,unit:"g"},
+  {id:"blueberry",name:"Mirtilo",calories:57,protein:0.7,carbs:14.5,fiber:2.4,fat:0.3,unit:"g"},
+  {id:"raspberry",name:"Framboesa",calories:52,protein:1.2,carbs:11.9,fiber:6.5,fat:0.7,unit:"g"},
+  {id:"blackberry",name:"Amora",calories:43,protein:1.4,carbs:9.6,fiber:5.3,fat:0.5,unit:"g"},
+  {id:"nectarine",name:"Nectarina",calories:44,protein:1.1,carbs:10.6,fiber:1.7,fat:0.3,unit:"g"},
+  {id:"fig",name:"Figo fresco",calories:74,protein:0.8,carbs:19.2,fiber:2.9,fat:0.3,unit:"g"},
+  {id:"persimmon",name:"Caqui",calories:70,protein:0.6,carbs:18.6,fiber:3.6,fat:0.2,unit:"g"},
+  {id:"jabuticaba",name:"Jabuticaba",calories:58,protein:0.6,carbs:15.3,fiber:2.3,fat:0.1,unit:"g"},
+  {id:"watermelon-melon",name:"Melancia (polpa)",calories:30,protein:0.6,carbs:7.6,fiber:0.4,fat:0.2,unit:"g"},
 
   // EMBUTIDOS
-  {id:"ham",name:"Presunto cozido",calories: hamCaloriesPlaceholder,protein:18,carbs:2,fiber:0,fat:6,unit:"g"},
+  {id:"ham",name:"Presunto cozido",calories:145,protein:18,carbs:2,fiber:0,fat:6,unit:"g"},
   {id:"turkey-breast",name:"Peito de peru defumado",calories:105,protein:17,carbs:3,fiber:0,fat:3,unit:"g"},
   {id:"mortadella",name:"Mortadela",calories:300,protein:12,carbs:3,fiber:0,fat:27,unit:"g"},
   {id:"bologna",name:"Apresuntado",calories:220,protein:12,carbs:4,fiber:0,fat:17,unit:"g"},
@@ -416,6 +401,7 @@ const defaultFoods = [
   {id:"sausage",name:"Salsicha",calories:290,protein:11,carbs:2,fiber:0,fat:26,unit:"g"},
   {id:"calabresa",name:"Linguiça calabresa",calories:320,protein:16,carbs:2,fiber:0,fat:28,unit:"g"},
   {id:"bacon",name:"Bacon frito",calories:541,protein:37,carbs:1.4,fiber:0,fat:42,unit:"g"},
+  {id:"chicken-sausage",name:"Linguiça de frango",calories:220,protein:16,carbs:2,fiber:0,fat:16,unit:"g"},
 
   // VERDURAS E LEGUMES
   {id:"cabbage",name:"Repolho cru",calories:25,protein:1.3,carbs:5.8,fiber:2.5,fat:0.1,unit:"g"},
@@ -433,6 +419,11 @@ const defaultFoods = [
   {id:"bell-pepper",name:"Pimentão cru",calories:26,protein:1,carbs:6,fiber:2.1,fat:0.3,unit:"g"},
   {id:"chayote",name:"Chuchu cozido",calories:19,protein:0.4,carbs:4.8,fiber:1.3,fat:0.1,unit:"g"},
   {id:"okra",name:"Quiabo cozido",calories:22,protein:1.9,carbs:4.5,fiber:2.5,fat:0.2,unit:"g"},
+  {id:"eggplant",name:"Berinjela cozida",calories:35,protein:0.8,carbs:8.7,fiber:2.5,fat:0.2,unit:"g"},
+  {id:"radish",name:"Rabanete cru",calories:16,protein:0.7,carbs:3.4,fiber:1.6,fat:0.1,unit:"g"},
+  {id:"celery",name:"Salsão cru",calories:14,protein:0.7,carbs:3,fiber:1.6,fat:0.2,unit:"g"},
+  {id:"asparagus",name:"Aspargo cozido",calories:22,protein:2.4,carbs:4.1,fiber:2,fat:0.2,unit:"g"},
+  {id:"corn-cooked",name:"Milho cozido",calories:96,protein:3.4,carbs:21,fiber:2.4,fat:1.5,unit:"g"},
 
   // INDUSTRIALIZADOS E ALIMENTOS PRONTOS
   {id:"cream-cheese",name:"Requeijão cremoso",calories:257,protein:9.6,carbs:3.5,fiber:0,fat:23,unit:"g"},
@@ -465,25 +456,45 @@ const defaultFoods = [
   {id:"canned-corn",name:"Milho em conserva escorrido",calories:85,protein:3,carbs:16,fiber:3,fat:1.2,unit:"g"},
   {id:"canned-peas",name:"Ervilha em conserva escorrida",calories:75,protein:4.5,carbs:12,fiber:4.5,fat:0.5,unit:"g"},
   {id:"canned-tuna-oil",name:"Atum em óleo escorrido",calories:198,protein:29,carbs:0,fiber:0,fat:9,unit:"g"},
-  {id:"instant-soup",name:"Sopa instantânea preparada",calories:40,protein:1.5,carbs:6,fiber:0.5,fat:1.2,unit:"g"}];
+  {id:"instant-soup",name:"Sopa instantânea preparada",calories:40,protein:1.5,carbs:6,fiber:0.5,fat:1.2,unit:"g"},
+  {id:"tomato-paste",name:"Extrato de tomate",calories:82,protein:4.3,carbs:18.9,fiber:4.1,fat:0.5,unit:"g"},
+  {id:"soy-sauce",name:"Molho shoyu",calories:53,protein:8,carbs:4.9,fiber:0.8,fat:0.6,unit:"ml"},
+  {id:"barbecue-sauce",name:"Molho barbecue",calories:172,protein:1.4,carbs:40,fiber:0.5,fat:0.6,unit:"g"},
+  {id:"strawberry-jam",name:"Geleia de morango",calories:250,protein:0.4,carbs:65,fiber:1,fat:0.1,unit:"g"},
+  {id:"margarine",name:"Margarina",calories:720,protein:0.2,carbs:0.7,fiber:0,fat:80,unit:"g"},
+  {id:"butter",name:"Manteiga",calories:717,protein:0.9,carbs:0.1,fiber:0,fat:81,unit:"g"},
+  {id:"white-chocolate",name:"Chocolate branco",calories:539,protein:5.9,carbs:59.2,fiber:0,fat:32.1,unit:"g"},
+  {id:"protein-bar",name:"Barra proteica (valor médio)",calories:350,protein:30,carbs:35,fiber:8,fat:12,unit:"g"},
+  {id:"energy-drink",name:"Bebida energética açucarada",calories:45,protein:0,carbs:11,fiber:0,fat:0,unit:"ml"},
+  {id:"sports-drink",name:"Bebida esportiva isotônica",calories:24,protein:0,carbs:6,fiber:0,fat:0,unit:"ml"},
+  {id:"canned-peaches",name:"Pêssego em calda escorrido",calories:74,protein:0.5,carbs:18.5,fiber:1.2,fat:0.1,unit:"g"},
+  {id:"canned-pineapple",name:"Abacaxi em calda escorrido",calories:83,protein:0.4,carbs:21.7,fiber:1.2,fat:0.1,unit:"g"}
+];
 
 // ============================================================
-// ESTADO E MIGRAÇÃO DA VERSÃO ANTERIOR
+// ESTADO E MIGRAÇÃO
 // ============================================================
 
 const STORAGE_KEY = "fitcalc_data_v1";
 
 function localDateString(date = new Date()) {
-  const y = date.getFullYear();
-  const m = String(date.getMonth()+1).padStart(2,"0");
-  const d = String(date.getDate()).padStart(2,"0");
+  const y=date.getFullYear();
+  const m=String(date.getMonth()+1).padStart(2,"0");
+  const d=String(date.getDate()).padStart(2,"0");
   return `${y}-${m}-${d}`;
 }
 
+function validDateString(value) {
+  if (typeof value!=="string" || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+  const [y,m,d]=value.split("-").map(Number);
+  const date=new Date(y,m-1,d);
+  return date.getFullYear()===y && date.getMonth()===m-1 && date.getDate()===d;
+}
+
 function dateFromEntry(item) {
-  if (item.date && /^\d{4}-\d{2}-\d{2}$/.test(item.date)) return item.date;
+  if (validDateString(item.date)) return item.date;
   if (item.createdAt) {
-    const parsed = new Date(item.createdAt);
+    const parsed=new Date(item.createdAt);
     if (!Number.isNaN(parsed.getTime())) return localDateString(parsed);
   }
   return localDateString();
@@ -491,70 +502,98 @@ function dateFromEntry(item) {
 
 function initialState() {
   return {
-    version:2, foods:[], exercises:[], customFoods:[],
+    version:2,foods:[],exercises:[],customFoods:[],
     profile:{age:"",sex:"male",height:"",weight:"",activityLevel:"1.55"},
     goals:{calories:"",protein:"",carbs:"",fiber:"",fat:""}
   };
 }
 
-function normalizeFood(item, isEntry = false) {
-  const food = isEntry
-    ? defaultFoods.find(f => f.id === item.foodId)
-    : null;
+function safeNumber(value, fallback=0) {
+  const number=Number(value);
+  return Number.isFinite(number) ? number : fallback;
+}
 
-  const base = food || {};
-  const quantity = Number(item.quantity) || 0;
-  const oldCustom = !food && isEntry ? null : item;
+function normalizeFood(item,isEntry=false) {
+  if (!item || typeof item!=="object") return null;
 
-  const result = {
-    ...item,
-    protein: Number(item.protein ?? (isEntry && base.protein != null ? base.protein*quantity/100 : 0)) || 0,
-    carbs: Number(item.carbs ?? (isEntry && base.carbs != null ? base.carbs*quantity/100 : Number(oldCustom?.carbs)||0)) || 0,
-    fiber: Number(item.fiber ?? (isEntry && base.fiber != null ? base.fiber*quantity/100 : Number(oldCustom?.fiber)||0)) || 0,
-    fat: Number(item.fat ?? (isEntry && base.fat != null ? base.fat*quantity/100 : Number(oldCustom?.fat)||0)) || 0
-  };
+  const food=isEntry ? defaultFoods.find(f=>f.id===item.foodId) : null;
+  const quantity=Math.max(0,safeNumber(item.quantity));
+  const base=food||{};
+  const result={...item};
 
-  if (isEntry) result.date = dateFromEntry(item);
+  if (isEntry) {
+    result.quantity=quantity;
+    result.date=dateFromEntry(item);
+    result.calories=safeNumber(item.calories,
+      food ? food.calories*quantity/100 : 0);
+
+    for (const nutrient of ["protein","carbs","fiber","fat"]) {
+      const stored=item[nutrient];
+      const calculated=food ? safeNumber(food[nutrient])*quantity/100 : 0;
+      result[nutrient]=stored!==undefined && Number.isFinite(Number(stored))
+        ? Number(stored)
+        : calculated;
+    }
+
+    if (!result.name) result.name=food?.name||"Alimento";
+    if (!result.unit) result.unit=food?.unit||"g";
+    return result;
+  }
+
+  result.calories=Math.max(0,safeNumber(item.calories));
+  result.protein=Math.max(0,safeNumber(item.protein));
+  result.carbs=Math.max(0,safeNumber(item.carbs));
+  result.fiber=Math.max(0,safeNumber(item.fiber));
+  result.fat=Math.max(0,safeNumber(item.fat));
+  result.unit=item.unit==="ml"?"ml":"g";
+  result.name=String(item.name||"Alimento personalizado").slice(0,80);
+  result.id=String(item.id||("custom-"+makeId()));
   return result;
 }
 
+function normalizeExercise(item) {
+  if (!item || typeof item!=="object") return null;
+  return {
+    ...item,
+    id:String(item.id||makeId()),
+    name:String(item.name||"Atividade").slice(0,80),
+    minutes:Math.max(0,safeNumber(item.minutes)),
+    weight:Math.max(0,safeNumber(item.weight)),
+    met:Math.max(0,safeNumber(item.met,4)),
+    calories:Math.max(0,safeNumber(item.calories)),
+    date:dateFromEntry(item)
+  };
+}
+
 function loadState() {
-  const fresh = initialState();
+  const fresh=initialState();
 
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
+    const raw=localStorage.getItem(STORAGE_KEY);
     if (!raw) return fresh;
 
-    const parsed = JSON.parse(raw);
-    if (!parsed || typeof parsed !== "object") return fresh;
+    const parsed=JSON.parse(raw);
+    if (!parsed || typeof parsed!=="object" || Array.isArray(parsed)) return fresh;
 
-    const state = {
-      ...fresh,
-      ...parsed,
-      foods: Array.isArray(parsed.foods) ? parsed.foods : [],
-      exercises: Array.isArray(parsed.exercises) ? parsed.exercises : [],
-      customFoods: Array.isArray(parsed.customFoods) ? parsed.customFoods : [],
+    const state={
+      ...fresh,...parsed,
+      foods:Array.isArray(parsed.foods)?parsed.foods:[],
+      exercises:Array.isArray(parsed.exercises)?parsed.exercises:[],
+      customFoods:Array.isArray(parsed.customFoods)?parsed.customFoods:[],
       profile:{...fresh.profile,...(parsed.profile||{})},
       goals:{...fresh.goals,...(parsed.goals||{})}
     };
 
-    state.foods = state.foods.map(item => normalizeFood(item,true));
-    state.customFoods = state.customFoods.map(food => ({
-      carbs:0,fiber:0,fat:0,...food
-    }));
-    state.exercises = state.exercises.map(item => ({
-      ...item,date:dateFromEntry(item)
-    }));
+    state.foods=state.foods.map(item=>normalizeFood(item,true)).filter(Boolean);
+    state.customFoods=state.customFoods.map(food=>normalizeFood(food,false)).filter(Boolean);
+    state.exercises=state.exercises.map(normalizeExercise).filter(Boolean);
 
-    state.goals = {
-      calories:state.goals.calories ?? "",
-      protein:state.goals.protein ?? "",
-      carbs:state.goals.carbs ?? "",
-      fiber:state.goals.fiber ?? "",
-      fat:state.goals.fat ?? ""
-    };
+    for (const key of Object.keys(fresh.goals)) {
+      const value=state.goals[key];
+      state.goals[key]=value==null?"":String(value);
+    }
 
-    state.version = 2;
+    state.version=2;
     return state;
   } catch(error) {
     console.error("Erro ao carregar FitCalc:",error);
@@ -562,9 +601,9 @@ function loadState() {
   }
 }
 
-let state = loadState();
-let selectedFoodId = null;
-let toastTimer = null;
+let state=loadState();
+let selectedFoodId=null;
+let toastTimer=null;
 
 function saveState() {
   try {
@@ -581,17 +620,17 @@ function saveState() {
 // UTILITÁRIOS
 // ============================================================
 
-const $ = id => document.getElementById(id);
+const $=id=>document.getElementById(id);
 
 function esc(value) {
-  return String(value ?? "").replace(/[&<>"']/g,c=>({
+  return String(value??"").replace(/[&<>"']/g,c=>({
     "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
   })[c]);
 }
 
 function n(value) {
-  const v = Number(value);
-  return Number.isFinite(v) ? v : 0;
+  const v=Number(value);
+  return Number.isFinite(v)?v:0;
 }
 
 function fmt(value,decimals=1) {
@@ -599,14 +638,15 @@ function fmt(value,decimals=1) {
 }
 
 function showToast(message) {
-  $("toast").textContent = message;
+  $("toast").textContent=message;
   $("toast").classList.add("show");
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(()=>$("toast").classList.remove("show"),2600);
+  toastTimer=setTimeout(()=>$("toast").classList.remove("show"),2800);
 }
 
 function currentDate() {
-  return $("selectedDate").value || localDateString();
+  const value=$("selectedDate").value;
+  return validDateString(value)?value:localDateString();
 }
 
 function allFoods() {
@@ -623,8 +663,8 @@ function makeId() {
 }
 
 function totalsForDate(date) {
-  const foods = state.foods.filter(item=>item.date===date);
-  const exercises = state.exercises.filter(item=>item.date===date);
+  const foods=state.foods.filter(item=>item.date===date);
+  const exercises=state.exercises.filter(item=>item.date===date);
 
   return {
     calories:foods.reduce((s,x)=>s+n(x.calories),0),
@@ -641,8 +681,8 @@ function totalsForDate(date) {
 // ============================================================
 
 function searchFoods() {
-  const query = $("foodSearch").value.trim().toLocaleLowerCase("pt-BR");
-  const target = $("foodResults");
+  const query=$("foodSearch").value.trim().toLocaleLowerCase("pt-BR");
+  const target=$("foodResults");
 
   if (!query) {
     target.innerHTML='<div class="empty">Digite o nome de um alimento.</div>';
@@ -651,7 +691,7 @@ function searchFoods() {
 
   const matches=allFoods()
     .filter(food=>food.name.toLocaleLowerCase("pt-BR").includes(query))
-    .slice(0,20);
+    .slice(0,30);
 
   if (!matches.length) {
     target.innerHTML='<div class="empty">Nenhum resultado. Você pode cadastrar o alimento personalizado abaixo.</div>';
@@ -660,7 +700,7 @@ function searchFoods() {
 
   target.innerHTML=matches.map(food=>`
     <button class="food-result" type="button" data-food-id="${esc(food.id)}">
-      <span><strong>${esc(food.name)}</strong><small>Por 100 ${food.unit}</small></span>
+      <span><strong>${esc(food.name)}</strong><small>Por 100 ${esc(food.unit)}</small></span>
       <strong>${fmt(food.calories,0)} kcal</strong>
     </button>
   `).join("");
@@ -673,9 +713,9 @@ function selectFood(id) {
   selectedFoodId=id;
   $("selectedFood").innerHTML=`
     <h3>${esc(food.name)}</h3>
-    <p class="muted">Valores nutricionais por 100 ${food.unit}.</p>
+    <p class="muted">Valores nutricionais por 100 ${esc(food.unit)}.</p>
     <div class="field" style="margin-top:12px">
-      <label for="foodQuantity">Quantidade (${food.unit})</label>
+      <label for="foodQuantity">Quantidade (${esc(food.unit)})</label>
       <input id="foodQuantity" type="number" min="0.1" max="100000" step="any" value="100">
     </div>
     <div class="result">
@@ -706,9 +746,10 @@ function updateFoodPreview() {
 
 function addSelectedFood() {
   const food=findFood(selectedFoodId);
-  const quantity=n($("foodQuantity")?.value);
+  const input=$("foodQuantity");
+  const quantity=n(input?.value);
 
-  if (!food || quantity<=0 || quantity>100000) {
+  if (!food || !input || input.value.trim()==="" || quantity<=0 || quantity>100000) {
     showToast("Informe uma quantidade válida.");
     return;
   }
@@ -834,7 +875,7 @@ function renderCustomFoods() {
     <div class="entry">
       <div class="entry-info">
         <strong>${esc(food.name)}</strong>
-        <small>${fmt(food.calories)} kcal · P ${fmt(food.protein)} g · C ${fmt(food.carbs)} g · Fibras ${fmt(food.fiber)} g · G ${fmt(food.fat)} g / 100 ${food.unit}</small>
+        <small>${fmt(food.calories)} kcal · P ${fmt(food.protein)} g · C ${fmt(food.carbs)} g · Fibras ${fmt(food.fiber)} g · G ${fmt(food.fat)} g / 100 ${esc(food.unit)}</small>
       </div>
       <button class="btn danger small" type="button" data-remove-custom="${esc(food.id)}">Excluir cadastro</button>
     </div>
@@ -856,7 +897,9 @@ const exerciseTypes={
 };
 
 $("exerciseType").addEventListener("change",()=>{
-  $("customExerciseField").hidden=$("exerciseType").value!=="custom";
+  const isCustom=$("exerciseType").value==="custom";
+  $("customExerciseField").hidden=!isCustom;
+  $("customExerciseName").required=isCustom;
 });
 
 $("exerciseForm").addEventListener("submit",event=>{
@@ -868,7 +911,7 @@ $("exerciseForm").addEventListener("submit",event=>{
   const weight=enteredWeight>0?enteredWeight:Number(state.profile.weight);
 
   if (!(minutes>0&&minutes<=1440&&weight>0&&weight<=500)) {
-    showToast("Informe duração e peso válidos.");
+    showToast("Informe duração e peso válidos. Cadastre seu peso na calculadora ou informe-o aqui.");
     return;
   }
 
@@ -896,6 +939,7 @@ $("exerciseForm").addEventListener("submit",event=>{
 
   $("exerciseForm").reset();
   $("customExerciseField").hidden=true;
+  $("customExerciseName").required=false;
   renderAll();
   showToast("Atividade salva no dia selecionado!");
 });
@@ -941,24 +985,30 @@ function populateProfile() {
   }
 }
 
-function calculateMetabolism() {
-  const age=n(state.profile.age);
-  const height=n(state.profile.height);
-  const weight=n(state.profile.weight);
-  const factor=n(state.profile.activityLevel);
+function getMetabolism(profile=state.profile) {
+  const age=n(profile.age);
+  const height=n(profile.height);
+  const weight=n(profile.weight);
+  const factor=n(profile.activityLevel);
 
-  if (!(age>0&&height>0&&weight>0&&factor>0)) {
+  if (!(age>0&&height>0&&weight>0&&factor>0)) return null;
+
+  const constant=profile.sex==="male"?5:-161;
+  const tmb=10*weight+6.25*height-5*age+constant;
+  return {tmb,tdee:tmb*factor};
+}
+
+function calculateMetabolism() {
+  const result=getMetabolism();
+
+  if (!result) {
     $("tmbResult").textContent="— kcal/dia";
     $("tdeeResult").textContent="— kcal/dia";
     return;
   }
 
-  const constant=state.profile.sex==="male"?5:-161;
-  const tmb=10*weight+6.25*height-5*age+constant;
-  const tdee=tmb*factor;
-
-  $("tmbResult").textContent=`${fmt(tmb,0)} kcal/dia`;
-  $("tdeeResult").textContent=`${fmt(tdee,0)} kcal/dia`;
+  $("tmbResult").textContent=`${fmt(result.tmb,0)} kcal/dia`;
+  $("tdeeResult").textContent=`${fmt(result.tdee,0)} kcal/dia`;
 }
 
 $("profileForm").addEventListener("submit",event=>{
@@ -987,7 +1037,7 @@ $("profileForm").addEventListener("submit",event=>{
 });
 
 // ============================================================
-// METAS PARA OS CINCO INDICADORES
+// METAS
 // ============================================================
 
 const goalFields={
@@ -1003,298 +1053,4 @@ const nutrientLabels={
   protein:{label:"Proteínas",unit:"g"},
   carbs:{label:"Carboidratos",unit:"g"},
   fiber:{label:"Fibras",unit:"g"},
-  fat:{label:"Gorduras",unit:"g"}
-};
-
-function populateGoals() {
-  for (const key of Object.keys(goalFields)) {
-    $(goalFields[key]).value=state.goals[key]??"";
-  }
-}
-
-$("goalsForm").addEventListener("submit",event=>{
-  event.preventDefault();
-
-  const next={};
-  for (const [key,id] of Object.entries(goalFields)) {
-    const raw=$(id).value;
-    const value=Number(raw);
-
-    if (raw!==""&&(!Number.isFinite(value)||value<0||value>20000)) {
-      showToast("Confira os valores das metas.");
-      return;
-    }
-
-    next[key]=raw;
-  }
-
-  const previous=state.goals;
-  state.goals=next;
-  if (!saveState()) {state.goals=previous;return;}
-
-  renderDashboard();
-  showToast("Metas salvas!");
-});
-
-function renderProgress(totals) {
-  const list=$("progressList");
-
-  list.innerHTML=Object.entries(nutrientLabels).map(([key,info])=>{
-    const goal=n(state.goals[key]);
-    const current=n(totals[key]);
-
-    if (!(goal>0)) {
-      return `<div class="progress-item"><div class="progress-top"><span>${info.label}</span><span>Meta não definida</span></div><div class="track"><div class="fill"></div></div></div>`;
-    }
-
-    const percentage=Math.min(100,current/goal*100);
-
-    return `
-      <div class="progress-item">
-        <div class="progress-top"><span>${info.label}</span><span>${fmt(current)} / ${fmt(goal)} ${info.unit} · ${fmt(current/goal*100,0)}%</span></div>
-        <div class="track"><div class="fill" style="width:${percentage}%"></div></div>
-      </div>`;
-  }).join("");
-}
-
-// ============================================================
-// PAINEL DO DIA
-// ============================================================
-
-function renderDashboard() {
-  const totals=totalsForDate(currentDate());
-
-  $("totalCalories").innerHTML=`${fmt(totals.calories,0)} <span>kcal</span>`;
-  $("totalProtein").innerHTML=`${fmt(totals.protein)} <span>g</span>`;
-  $("totalCarbs").innerHTML=`${fmt(totals.carbs)} <span>g</span>`;
-  $("totalFiber").innerHTML=`${fmt(totals.fiber)} <span>g</span>`;
-  $("totalFat").innerHTML=`${fmt(totals.fat)} <span>g</span>`;
-
-  // O TDEE é estimado com os dados salvos na calculadora metabólica.
-  const age=n(state.profile.age);
-  const height=n(state.profile.height);
-  const weight=n(state.profile.weight);
-  const factor=n(state.profile.activityLevel);
-
-  if (age>0&&height>0&&weight>0&&factor>0) {
-    const constant=state.profile.sex==="male"?5:-161;
-    const tmb=10*weight+6.25*height-5*age+constant;
-    const tdee=tmb*factor;
-
-    $("totalTDEE").innerHTML=`${fmt(tdee,0)} <span>kcal</span>`;
-  } else {
-    $("totalTDEE").innerHTML=`— <span>kcal</span>`;
-  }
-
-  renderProgress(totals);
-}
-
-// ============================================================
-// HISTÓRICO POR DIA
-// ============================================================
-
-function formatDate(date) {
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) return date;
-  const [y,m,d]=date.split("-");
-  return `${d}/${m}/${y}`;
-}
-
-function renderHistory() {
-  const dates=new Set([
-    ...state.foods.map(item=>item.date),
-    ...state.exercises.map(item=>item.date)
-  ]);
-
-  const sorted=[...dates].filter(Boolean).sort((a,b)=>b.localeCompare(a));
-  $("historyEmpty").style.display=sorted.length?"none":"block";
-
-  $("historyBody").innerHTML=sorted.map(date=>{
-    const t=totalsForDate(date);
-    const isSelected=date===currentDate();
-
-    return `
-      <tr>
-        <td>${esc(formatDate(date))}${isSelected?" •":""}</td>
-        <td>${fmt(t.calories,0)} kcal</td>
-        <td>${fmt(t.protein)} g</td>
-        <td>${fmt(t.carbs)} g</td>
-        <td>${fmt(t.fiber)} g</td>
-        <td>${fmt(t.fat)} g</td>
-        <td>${fmt(t.exercise,0)} kcal</td>
-        <td><button class="btn secondary small" type="button" data-history-date="${esc(date)}">Abrir</button></td>
-      </tr>`;
-  }).join("");
-}
-
-function renderAll() {
-  renderFoodList();
-  renderExerciseList();
-  renderCustomFoods();
-  renderDashboard();
-  renderHistory();
-  calculateMetabolism();
-}
-
-function changeDate(date) {
-  $("selectedDate").value=date;
-  cancelSelectedFood();
-  renderAll();
-}
-
-// ============================================================
-// EXPORTAR / IMPORTAR BACKUP
-// ============================================================
-
-$("exportData").addEventListener("click",()=>{
-  const backup={
-    app:"FitCalc",
-    version:2,
-    exportedAt:new Date().toISOString(),
-    data:state
-  };
-
-  const blob=new Blob([JSON.stringify(backup,null,2)],{type:"application/json"});
-  const url=URL.createObjectURL(blob);
-  const link=document.createElement("a");
-  link.href=url;
-  link.download="fitcalc-backup.json";
-  document.body.appendChild(link);
-  link.click();
-  link.remove();
-  setTimeout(()=>URL.revokeObjectURL(url),1000);
-  showToast("Backup exportado!");
-});
-
-$("importDataButton").addEventListener("click",()=>$("importDataFile").click());
-
-$("importDataFile").addEventListener("change",async event=>{
-  const file=event.target.files[0];
-  if (!file) return;
-
-  try {
-    const parsed=JSON.parse(await file.text());
-    const imported=parsed.data||parsed;
-
-    if (!imported||!Array.isArray(imported.foods)||
-        !Array.isArray(imported.exercises)||
-        !Array.isArray(imported.customFoods)||
-        !imported.profile||!imported.goals) {
-      throw new Error("Formato inválido");
-    }
-
-    if (!confirm("Importar o backup substituirá os dados atuais. Deseja continuar?")) return;
-
-    const previous=state;
-    const fresh=initialState();
-
-    state={
-      ...fresh,...imported,version:2,
-      foods:imported.foods.map(item=>normalizeFood(item,true)),
-      exercises:imported.exercises.map(item=>({...item,date:dateFromEntry(item)})),
-      customFoods:imported.customFoods.map(food=>({carbs:0,fiber:0,fat:0,...food})),
-      profile:{...fresh.profile,...imported.profile},
-      goals:{...fresh.goals,...imported.goals}
-    };
-
-    if (!saveState()) {state=previous;return;}
-
-    populateProfile();
-    populateGoals();
-    cancelSelectedFood();
-    renderAll();
-    showToast("Backup importado!");
-  } catch(error) {
-    console.error(error);
-    showToast("Não foi possível importar esse arquivo.");
-  } finally {
-    event.target.value="";
-  }
-});
-
-// ============================================================
-// APAGAR DADOS
-// ============================================================
-
-$("clearData").addEventListener("click",()=>{
-  if (!confirm("Isso apagará todos os alimentos, exercícios, metas e alimentos personalizados. Esta ação não pode ser desfeita. Deseja continuar?")) return;
-
-  const previous=state;
-  state=initialState();
-
-  if (!saveState()) {state=previous;return;}
-
-  changeDate(localDateString());
-  $("foodSearch").value="";
-  searchFoods();
-  populateProfile();
-  populateGoals();
-  showToast("Dados locais apagados.");
-});
-
-// ============================================================
-// EVENTOS E INICIALIZAÇÃO
-// ============================================================
-
-$("foodSearch").addEventListener("input",searchFoods);
-
-$("foodResults").addEventListener("click",event=>{
-  const button=event.target.closest("[data-food-id]");
-  if (button) selectFood(button.dataset.foodId);
-});
-
-$("foodList").addEventListener("click",event=>{
-  const button=event.target.closest("[data-remove-food]");
-  if (button) removeFoodEntry(button.dataset.removeFood);
-});
-
-$("exerciseList").addEventListener("click",event=>{
-  const button=event.target.closest("[data-remove-exercise]");
-  if (button) removeExercise(button.dataset.removeExercise);
-});
-
-$("customFoodList").addEventListener("click",event=>{
-  const button=event.target.closest("[data-remove-custom]");
-  if (button) removeCustomFood(button.dataset.removeCustom);
-});
-
-$("historyBody").addEventListener("click",event=>{
-  const button=event.target.closest("[data-history-date]");
-  if (button) {
-    changeDate(button.dataset.historyDate);
-    $("painel").scrollIntoView({behavior:"smooth"});
-  }
-});
-
-$("selectedDate").addEventListener("change",()=>{
-  if ($("selectedDate").value) changeDate($("selectedDate").value);
-});
-
-$("todayButton").addEventListener("click",()=>changeDate(localDateString()));
-
-$("previousDay").addEventListener("click",()=>{
-  const date=new Date(currentDate()+"T12:00:00");
-  date.setDate(date.getDate()-1);
-  changeDate(localDateString(date));
-});
-
-$("nextDay").addEventListener("click",()=>{
-  const date=new Date(currentDate()+"T12:00:00");
-  date.setDate(date.getDate()+1);
-  changeDate(localDateString(date));
-});
-
-function initialize() {
-  $("selectedDate").value=localDateString();
-  populateProfile();
-  populateGoals();
-
-  saveState();
-
-  searchFoods();
-  renderAll();
-}
-
-initialize();
-</script>
-</body>
-</html>
+  fat
