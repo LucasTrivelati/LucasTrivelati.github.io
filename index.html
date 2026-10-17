@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -10,23 +9,61 @@
 :root{--bg:#0c100d;--panel:#151b16;--panel2:#1b231c;--border:#2b372b;--green:#b9f66b;--green-dark:#273c1b;--text:#f0f4ed;--muted:#9aa69a;--red:#ff7979}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:90px}
-body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,sans-serif;line-height:1.55}
+body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,sans-serif;line-height:1.55;overflow-x:hidden}
 button,input,select{font:inherit}
 button{cursor:pointer}
 a{color:inherit;text-decoration:none}
 .container{width:min(1150px,92%);margin:auto}
-header{position:sticky;top:0;z-index:10;background:#0c100df2;border-bottom:1px solid var(--border);backdrop-filter:blur(12px)}
+header{position:sticky;top:0;z-index:10;background:#0c100df2;border-bottom:1px solid var(--border);backdrop-filter:blur(12px);transition:background .25s,border-color .25s}
 .nav{min-height:68px;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;padding:10px 0}
-.logo{font-size:1.4rem;font-weight:900;letter-spacing:-1px}
+.logo{font-size:1.4rem;font-weight:900;letter-spacing:-1px;transition:transform .25s}
+.logo:hover{transform:scale(1.04)}
 .logo span,h1 span{color:var(--green)}
 nav{display:flex;gap:15px;flex-wrap:wrap}
-nav a{font-size:.87rem;color:var(--muted)}
-nav a:hover{color:var(--green)}
+nav a{font-size:.87rem;color:var(--muted);position:relative;transition:color .2s,transform .2s}
+nav a::after{content:"";position:absolute;left:0;right:0;bottom:-5px;height:2px;background:var(--green);transform:scaleX(0);transform-origin:left;transition:transform .25s}
+nav a:hover{color:var(--green);transform:translateY(-1px)}
+nav a:hover::after{transform:scaleX(1)}
 .hero{padding:48px 0 30px}
 .eyebrow{color:var(--green);text-transform:uppercase;letter-spacing:2px;font-size:.75rem;font-weight:800;margin-bottom:10px}
 h1{font-size:clamp(2.2rem,6vw,4.2rem);letter-spacing:-2.5px;line-height:1.07}
+.hero h1 span{display:inline-block;animation:greenGlow 4s ease-in-out infinite}
 .hero p{color:var(--muted);max-width:650px;margin-top:15px}
-.section{margin:30px 0}
+#totalProtein{color:#ff6915}
+#totalCarbs{color:#00d5ff}
+#totalFat{color:#fff100}
+#totalFiber{color:#00ff03}
+.section{margin:30px 0;scroll-margin-top:90px}
+.chamat{animation: teste 1s alternate 1s ease
+    
+}
+
+@keyframes teste {
+    0% {color:white}
+    50% {color:}
+}.chamat {
+    background: linear-gradient(
+        90deg,
+        white,
+        var(--green),
+        white
+    );
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation: teste 3s linear infinite;
+}
+
+@keyframes teste {
+    from {
+        background-position: 0% center;
+    }
+    to {
+        background-position: 200% center;
+    }
+}
 .heading{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px}
 h2{font-size:1.4rem;letter-spacing:-.5px}
 h3{font-size:1rem;margin-bottom:12px}
@@ -34,61 +71,124 @@ h3{font-size:1rem;margin-bottom:12px}
 .grid{display:grid;gap:15px}
 .stats{grid-template-columns:repeat(3,minmax(0,1fr))}
 .two{grid-template-columns:repeat(2,minmax(0,1fr))}
-.card{min-width:0;background:var(--panel);border:1px solid var(--border);border-radius:17px;padding:20px}
+.card{min-width:0;background:var(--panel);border:1px solid var(--border);border-radius:17px;padding:20px;transition:border-color .25s,background .25s,transform .25s,box-shadow .25s}
+.card:hover{border-color:#40523c;box-shadow:0 10px 28px #00000018}
+.stats .card:hover{transform:translateY(-3px);box-shadow:0 12px 28px #00000030}
 .stat-label{color:var(--muted);font-size:.82rem}
 .stat-value{font-size:clamp(1.35rem,3vw,2rem);font-weight:850;letter-spacing:-1px;margin:7px 0;overflow-wrap:anywhere}
-.stat-value span{color:var(--green);font-size:.78em}
+.stat-value span{color:var(-);font-size:.78em}
 .stat-foot{color:var(--muted);font-size:.76rem}
 .form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
 .field{display:flex;flex-direction:column;gap:6px;min-width:0}
 .field.full{grid-column:1/-1}
+[hidden]{display:none!important}
 label{font-size:.82rem;color:var(--muted)}
-input,select{width:100%;min-width:0;background:#0e130f;border:1px solid var(--border);border-radius:10px;color:var(--text);padding:11px 12px;outline:none}
-input:focus,select:focus{border-color:var(--green)}
+input,select{width:100%;min-width:0;background:#0e130f;border:1px solid var(--border);border-radius:10px;color:var(--text);padding:11px 12px;outline:none;transition:border-color .2s,box-shadow .2s,background .2s}
+input:focus,select:focus{border-color:var(--green);box-shadow:0 0 0 3px #b9f66b18;background:#111811}
 input::placeholder{color:#647064}
 option{background:var(--panel)}
-.btn{border:0;border-radius:10px;padding:10px 14px;font-weight:750;transition:.15s}
-.btn:hover{filter:brightness(1.1)}
+.btn{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:10px;padding:10px 14px;font-weight:750;transition:transform .18s,filter .18s,background .18s,border-color .18s,box-shadow .18s}
+.btn:hover{filter:brightness(1.1);transform:translateY(-2px)}
+.btn:active{transform:translateY(0) scale(.98)}
+.btn:focus-visible,a:focus-visible{outline:2px solid var(--green);outline-offset:3px}
 .primary{background:var(--green);color:#14200c}
+.primary:hover{box-shadow:0 5px 18px #b9f66b25}
 .secondary{background:var(--panel2);border:1px solid var(--border);color:var(--text)}
+.secondary:hover{border-color:#53674b}
 .danger{background:#351d1d;color:#ffaaaa;border:1px solid #573030}
+.danger:hover{background:#492323;border-color:#854141}
 .small{font-size:.78rem;padding:7px 9px}
 .actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
-.result{margin-top:14px;padding:14px;background:var(--green-dark);border:1px solid #3e572b;border-radius:12px}
+.result{margin-top:14px;padding:14px;background:var(--green-dark);border:1px solid #3e572b;border-radius:12px;animation:resultIn .35s ease both}
 .result strong{color:var(--green);font-size:1.35rem}
 .notice{padding:13px;background:#181e18;border-radius:11px;color:var(--muted);font-size:.82rem;margin-top:14px}
 .search-results,.entry-list{display:grid;gap:9px;margin-top:12px}
-.food-result{display:flex;justify-content:space-between;align-items:center;gap:12px;text-align:left;width:100%;padding:12px;background:#101610;color:var(--text);border:1px solid var(--border);border-radius:10px}
-.food-result:hover{border-color:var(--green)}
+.food-result{display:flex;justify-content:space-between;align-items:center;gap:12px;text-align:left;width:100%;padding:12px;background:#101610;color:var(--text);border:1px solid var(--border);border-radius:10px;transition:border-color .2s,background .2s,transform .2s,box-shadow .2s;animation:fadeUp .3s ease both}
+.food-result:hover{border-color:var(--green);background:#172017;transform:translateX(3px);box-shadow:0 5px 15px #0002}
 .food-result small{display:block;color:var(--muted);font-size:.77rem;margin-top:3px}
 .food-result strong:last-child{color:var(--green);white-space:nowrap}
-.selected{margin-top:14px;padding:14px;background:#101610;border:1px solid var(--border);border-radius:12px}
+.selected{margin-top:14px;padding:14px;background:#101610;border:1px solid var(--border);border-radius:12px;animation:fadeUp .3s ease both}
 .selected:empty{display:none}
-.entry{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px;background:#101610;border:1px solid var(--border);border-radius:11px}
+.entry{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px;background:#101610;border:1px solid var(--border);border-radius:11px;transition:border-color .2s,background .2s,transform .2s;animation:fadeUp .3s ease both}
+.entry:hover{border-color:#465740;background:#131b13;transform:translateY(-1px)}
 .entry-info{min-width:0}
 .entry-info strong{display:block;overflow-wrap:anywhere}
 .entry-info small{display:block;color:var(--muted);font-size:.78rem;margin-top:3px}
 .entry-right{display:flex;align-items:center;gap:9px;flex-shrink:0}
 .entry-number{text-align:right;color:var(--green);font-weight:800;font-size:.9rem}
-.empty{padding:20px 10px;text-align:center;color:var(--muted);border:1px dashed var(--border);border-radius:11px;font-size:.87rem}
-.progress-item{margin:18px 0}
+.empty{padding:20px 10px;text-align:center;color:var(--muted);border:1px dashed var(--border);border-radius:11px;font-size:.87rem;animation:fadeUp .3s ease both}
+.progress-item{margin:18px 0;animation:fadeUp .35s ease both}
 .progress-top{display:flex;justify-content:space-between;gap:10px;font-size:.83rem;margin-bottom:7px}
 .progress-top span:last-child{text-align:right;color:var(--muted)}
 .track{height:8px;background:#293129;border-radius:20px;overflow:hidden}
-.fill{height:100%;width:0;background:var(--green);border-radius:inherit;transition:width .25s}
+.fill{height:100%;width:0;background:var(--green);border-radius:inherit;transition:width .65s cubic-bezier(.22,1,.36,1);box-shadow:0 0 10px #b9f66b28}
 .badge{display:inline-flex;align-items:center;gap:7px;font-size:.78rem;color:var(--green)}
-.dot{width:7px;height:7px;border-radius:50%;background:var(--green)}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:dotPulse 2s ease-in-out infinite}
 .table-wrap{overflow-x:auto}
 table{width:100%;border-collapse:collapse;font-size:.86rem}
 th,td{text-align:left;padding:11px 9px;border-bottom:1px solid var(--border);white-space:nowrap}
 th{color:var(--muted);font-weight:600}
 td:last-child,th:last-child{text-align:right}
+tbody tr{transition:background .2s}
+tbody tr:hover{background:#1b231c}
 footer{border-top:1px solid var(--border);padding:28px 0;margin-top:40px;color:var(--muted);font-size:.82rem}
 .footer-row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-#toast{position:fixed;z-index:99;bottom:20px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--green);color:#14200c;padding:11px 17px;border-radius:11px;font-weight:750;box-shadow:0 8px 30px #0006;transition:.2s;max-width:90%;text-align:center}
-#toast.show{opacity:1;transform:translate(-50%,0)}
-@media(max-width:850px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.two{grid-template-columns:1fr}}
-@media(max-width:500px){.nav{align-items:flex-start;flex-direction:column;gap:8px}nav{gap:12px}.hero{padding-top:35px}h1{letter-spacing:-1.5px}.card{padding:15px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.entry{align-items:flex-start}.entry-right{flex-direction:column;align-items:flex-end}}
+#toast{position:fixed;z-index:99;bottom:20px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--green);color:#14200c;padding:11px 17px;border-radius:11px;font-weight:750;box-shadow:0 8px 30px #0006;transition:opacity .25s,transform .25s;max-width:90%;text-align:center}
+#toast.show{opacity:1;transform:translate(-50%,0);animation:toastIn .3s ease both}
+
+/* Animações e efeitos de entrada */
+@keyframes fadeUp{
+from{opacity:0;transform:translateY(18px)}
+to{opacity:1;transform:translateY(0)}
+}
+@keyframes fadeIn{
+from{opacity:0}
+to{opacity:1}
+}
+@keyframes resultIn{
+from{opacity:0;transform:translateY(8px) scale(.99)}
+to{opacity:1;transform:translateY(0) scale(1)}
+}
+@keyframes toastIn{
+from{opacity:0;transform:translate(-50%,12px) scale(.97)}
+to{opacity:1;transform:translate(-50%,0) scale(1)}
+}
+@keyframes greenGlow{
+0%,100%{text-shadow:0 0 0 #b9f66b00}
+50%{text-shadow:0 0 22px #b9f66b35}
+}
+@keyframes dotPulse{
+0%,100%{opacity:1;box-shadow:0 0 0 0 #b9f66b50}
+50%{opacity:.7;box-shadow:0 0 0 5px #b9f66b00}
+}
+
+/* Elementos revelados ao entrar na tela */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s cubic-bezier(.2,.7,.2,1)}
+.reveal.is-visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.08s}
+.reveal-delay-2{transition-delay:.16s}
+.reveal-delay-3{transition-delay:.24s}
+
+@media(max-width:850px){
+.stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+.two{grid-template-columns:1fr}
+}
+@media(max-width:500px){
+.nav{align-items:flex-start;flex-direction:column;gap:8px}
+nav{gap:12px}
+.hero{padding-top:35px}
+h1{letter-spacing:-1.5px}
+.card{padding:15px}
+.form-grid{grid-template-columns:1fr}
+.field.full{grid-column:auto}
+.entry{align-items:flex-start}
+.entry-right{flex-direction:column;align-items:flex-end}
+.food-result:hover{transform:translateX(1px)}
+}
+@media(prefers-reduced-motion:reduce){
+*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+.reveal{opacity:1;transform:none}
+}
 </style>
 </head>
 <body>
@@ -106,7 +206,7 @@ footer{border-top:1px solid var(--border);padding:28px 0;margin-top:40px;color:v
 <main class="container">
 <section class="hero">
 <div class="eyebrow">Sua rotina, seus resultados</div>
-<h1>Construa sua evolução.<br><span>Um dia de cada vez.</span></h1>
+<h1 class="chamat">Construa sua evolução<br>um dia de cada vez.</h1>
 <p>Registre refeições e atividades e acompanhe seu histórico diário.</p>
 <div class="actions">
 <a class="btn primary" href="#alimentacao">Registrar refeição</a>
@@ -129,10 +229,10 @@ footer{border-top:1px solid var(--border);padding:28px 0;margin-top:40px;color:v
 </div>
 <div class="grid stats">
 <div class="card"><div class="stat-label">Calorias consumidas</div><div class="stat-value" id="totalCalories">0 <span>kcal</span></div><div class="stat-foot">Alimentos registrados</div></div>
-<div class="card"><div class="stat-label">Proteínas</div><div class="stat-value" id="totalProtein">0 <span>g</span></div><div class="stat-foot">Consumo no dia</div></div>
-<div class="card"><div class="stat-label">Carboidratos</div><div class="stat-value" id="totalCarbs">0 <span>g</span></div><div class="stat-foot">Consumo no dia</div></div>
-<div class="card"><div class="stat-label">Gorduras</div><div class="stat-value" id="totalFat">0 <span>g</span></div><div class="stat-foot">Consumo no dia</div></div>
-<div class="card"><div class="stat-label">Fibras alimentares</div><div class="stat-value" id="totalFiber">0 <span>g</span></div><div class="stat-foot">Consumo no dia</div></div>
+<div class="card"><div class="stat-label" style="color:#ff6915">Proteínas</div><div class="stat-value" id="totalProtein" style="color:#ff6915">0 <strong style="color:#ff6915">g</strong></div><div class="stat-foot">Consumo no dia</div></div>
+<div class="card"><div class="stat-label" style="color:#00d5ff">Carboidratos</div><div class="stat-value" id="totalCarbs" style="color:#00d5ff">0 <span>g</span></div><div class="stat-foot">Consumo no dia</div></div>
+<div class="card"><div class="stat-label" style="color:#fff100">Gorduras</div><div class="stat-value" id="totalFat" style="color:#fff100">0 <span>g</span></div><div class="stat-foot">Consumo no dia</div></div>
+<div class="card"><div class="stat-label" style="color:#00ff03">Fibras alimentares</div><div class="stat-value" id="totalFiber" style="color:#00ff03">0 <span>g</span></div><div class="stat-foot">Consumo no dia</div></div>
 <div class="card"><div class="stat-label">Gasto diário estimado (TDEE)</div><div class="stat-value" id="totalTDEE">— <span>kcal</span></div><div class="stat-foot">Estimativa diária</div></div>
 </div>
 </section>
@@ -257,9 +357,8 @@ footer{border-top:1px solid var(--border);padding:28px 0;margin-top:40px;color:v
 </section>
 </main>
 
-<footer><div class="container footer-row"><strong>FitCalc</strong><span>Nutrição e evolução</span></div></footer>
+<footer><div class="container footer-row"><strong class="chamat">FitCalc</strong><span><a href="https://www.instagram.com/trivelati.lucs?dlrf=N2ZyeGJsbG01cHQ=" style="color:#00ff03">@trivelati.lucs</a><br>trivelatilucas@gmail.com</span></div></footer>
 <div id="toast" role="status" aria-live="polite"></div>
-
 <script>
 "use strict";
 
@@ -395,8 +494,12 @@ return String(value??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt
 function n(value){const v=Number(value);return Number.isFinite(v)?v:0}
 function fmt(value,decimals=1){return n(value).toLocaleString("pt-BR",{maximumFractionDigits:decimals})}
 function showToast(message){
-$("toast").textContent=message;$("toast").classList.add("show");
-clearTimeout(toastTimer);toastTimer=setTimeout(()=>$("toast").classList.remove("show"),2600);
+$("toast").textContent=message;
+$("toast").classList.remove("show");
+void $("toast").offsetWidth;
+$("toast").classList.add("show");
+clearTimeout(toastTimer);
+toastTimer=setTimeout(()=>$("toast").classList.remove("show"),2600);
 }
 function currentDate(){return $("selectedDate").value||localDateString()}
 function dateFromEntry(item){
@@ -407,8 +510,10 @@ return localDateString();
 function loadState(){
 const fresh=initialState();
 try{
-const raw=localStorage.getItem(STORAGE_KEY);if(!raw)return fresh;
-const parsed=JSON.parse(raw);if(!parsed||typeof parsed!=="object")return fresh;
+const raw=localStorage.getItem(STORAGE_KEY);
+if(!raw)return fresh;
+const parsed=JSON.parse(raw);
+if(!parsed||typeof parsed!=="object")return fresh;
 const result={...fresh,...parsed,
 foods:Array.isArray(parsed.foods)?parsed.foods:[],
 exercises:Array.isArray(parsed.exercises)?parsed.exercises:[],
@@ -453,7 +558,8 @@ $("foodResults").innerHTML=matches.length?matches.map(f=>`
 <strong>${fmt(f.calories,0)} kcal</strong></button>`).join(""):'<div class="empty">Nenhum resultado encontrado.</div>';
 }
 function selectFood(id){
-const food=findFood(id);if(!food)return;
+const food=findFood(id);
+if(!food)return;
 selectedFoodId=id;
 $("selectedFood").innerHTML=`
 <h3>${esc(food.name)}</h3><p class="muted">Valores por 100 ${food.unit}.</p>
@@ -466,7 +572,8 @@ $("cancelFoodButton").addEventListener("click",cancelSelectedFood);
 updateFoodPreview();
 }
 function updateFoodPreview(){
-const f=findFood(selectedFoodId);if(!f)return;
+const f=findFood(selectedFoodId);
+if(!f)return;
 const q=n($("foodQuantity")?.value);
 $("previewCalories").textContent=`${fmt(f.calories*q/100)} kcal`;
 $("previewMacros").textContent=`P ${fmt(f.protein*q/100)} g · C ${fmt(f.carbs*q/100)} g · Fibras ${fmt(f.fiber*q/100)} g · Gorduras ${fmt(f.fat*q/100)} g`;
@@ -483,8 +590,10 @@ if(!saveState()){state.foods.pop();return}
 cancelSelectedFood();renderAll();showToast("Alimento adicionado!");
 }
 function removeFood(id){
-const old=state.foods;state.foods=state.foods.filter(x=>x.id!==id);
-if(!saveState()){state.foods=old;return}renderAll();showToast("Registro removido.");
+const old=state.foods;
+state.foods=state.foods.filter(x=>x.id!==id);
+if(!saveState()){state.foods=old;return}
+renderAll();showToast("Registro removido.");
 }
 function renderFoodList(){
 const items=state.foods.filter(x=>x.date===currentDate());
@@ -509,7 +618,8 @@ $("customFoodForm").reset();renderCustomFoods();searchFoods();showToast("Aliment
 });
 function removeCustomFood(id){
 if(state.foods.some(x=>x.foodId===id)&&!confirm("Há registros desse alimento. Excluir apenas do cadastro?"))return;
-const old=state.customFoods;state.customFoods=state.customFoods.filter(x=>x.id!==id);
+const old=state.customFoods;
+state.customFoods=state.customFoods.filter(x=>x.id!==id);
 if(!saveState()){state.customFoods=old;return}
 if(selectedFoodId===id)cancelSelectedFood();
 renderCustomFoods();searchFoods();showToast("Cadastro removido.");
@@ -523,27 +633,43 @@ $("customFoodList").innerHTML=state.customFoods.length?state.customFoods.map(f=>
 
 // EXERCÍCIOS
 const exerciseTypes={
-walking:{name:"Caminhada moderada",met:3.5},briskWalking:{name:"Caminhada rápida",met:5},
-running:{name:"Corrida",met:9.8},weightTraining:{name:"Musculação",met:5},
-volleyball:{name:"Vôlei",met:4},soccer:{name:"Futebol",met:7},cycling:{name:"Ciclismo",met:6.8}
+walking:{name:"Caminhada moderada",met:3.5},
+briskWalking:{name:"Caminhada rápida",met:5},
+running:{name:"Corrida",met:9.8},
+weightTraining:{name:"Musculação",met:5},
+volleyball:{name:"Vôlei",met:4},
+soccer:{name:"Futebol",met:7},
+cycling:{name:"Ciclismo",met:6.8}
 };
-$("exerciseType").addEventListener("change",()=>{$("customExerciseField").hidden=$("exerciseType").value!=="custom"});
+$("exerciseType").addEventListener("change",()=>{
+$("customExerciseField").hidden=$("exerciseType").value!=="custom";
+});
 $("exerciseForm").addEventListener("submit",e=>{
 e.preventDefault();
 const type=$("exerciseType").value,minutes=Number($("exerciseMinutes").value);
 const weight=Number($("exerciseWeight").value)||Number(state.profile.weight);
 if(!(minutes>0&&minutes<=1440&&weight>0&&weight<=500)){showToast("Informe duração e peso válidos.");return}
 let name,met;
-if(type==="custom"){name=$("customExerciseName").value.trim();if(!name){showToast("Informe o nome da atividade.");return}met=4}
-else{name=exerciseTypes[type].name;met=exerciseTypes[type].met}
+if(type==="custom"){
+name=$("customExerciseName").value.trim();
+if(!name){showToast("Informe o nome da atividade.");return}
+met=4;
+}else{
+name=exerciseTypes[type].name;
+met=exerciseTypes[type].met;
+}
 const item={id:makeId(),name,type,minutes,weight,met,calories:met*3.5*weight/200*minutes,date:currentDate(),createdAt:new Date().toISOString()};
 state.exercises.push(item);
 if(!saveState()){state.exercises.pop();return}
-$("exerciseForm").reset();$("customExerciseField").hidden=true;renderAll();showToast("Atividade registrada!");
+$("exerciseForm").reset();
+$("customExerciseField").hidden=true;
+renderAll();showToast("Atividade registrada!");
 });
 function removeExercise(id){
-const old=state.exercises;state.exercises=state.exercises.filter(x=>x.id!==id);
-if(!saveState()){state.exercises=old;return}renderAll();showToast("Atividade removida.");
+const old=state.exercises;
+state.exercises=state.exercises.filter(x=>x.id!==id);
+if(!saveState()){state.exercises=old;return}
+renderAll();showToast("Atividade removida.");
 }
 function renderExerciseList(){
 const items=state.exercises.filter(x=>x.date===currentDate());
@@ -552,35 +678,55 @@ $("exerciseList").innerHTML=items.length?items.map(x=>`
 <div class="entry-right"><div class="entry-number">${fmt(x.calories,0)} kcal</div><button class="btn danger small" type="button" data-remove-exercise="${esc(x.id)}">Excluir</button></div></div>`).join(""):'<div class="empty">Nenhum exercício nesta data.</div>';
 }
 
-// CALCULADORA
-function populateProfile(){for(const k of ["age","sex","height","weight","activityLevel"])$(k).value=state.profile[k]??""}
+// CALCULADORA METABÓLICA
+function populateProfile(){
+for(const k of ["age","sex","height","weight","activityLevel"])$(k).value=state.profile[k]??"";
+}
 function calculateMetabolism(){
 const age=n(state.profile.age),height=n(state.profile.height),weight=n(state.profile.weight),factor=n(state.profile.activityLevel);
-if(!(age>0&&height>0&&weight>0&&factor>0)){$("tmbResult").textContent="— kcal/dia";$("tdeeResult").textContent="— kcal/dia";return}
+if(!(age>0&&height>0&&weight>0&&factor>0)){
+$("tmbResult").textContent="— kcal/dia";
+$("tdeeResult").textContent="— kcal/dia";
+return;
+}
 const tmb=10*weight+6.25*height-5*age+(state.profile.sex==="male"?5:-161),tdee=tmb*factor;
-$("tmbResult").textContent=`${fmt(tmb,0)} kcal/dia`;$("tdeeResult").textContent=`${fmt(tdee,0)} kcal/dia`;
+$("tmbResult").textContent=`${fmt(tmb,0)} kcal/dia`;
+$("tdeeResult").textContent=`${fmt(tdee,0)} kcal/dia`;
 }
 $("profileForm").addEventListener("submit",e=>{
 e.preventDefault();
 const p={age:Number($("age").value),sex:$("sex").value,height:Number($("height").value),weight:Number($("weight").value),activityLevel:$("activityLevel").value};
-if(!(p.age>=1&&p.age<=120&&p.height>=50&&p.height<=250&&p.weight>=10&&p.weight<=500)){showToast("Confira idade, altura e peso.");return}
-const old=state.profile;state.profile=p;
+if(!(p.age>=1&&p.age<=120&&p.height>=50&&p.height<=250&&p.weight>=10&&p.weight<=500)){
+showToast("Confira idade, altura e peso.");return;
+}
+const old=state.profile;
+state.profile=p;
 if(!saveState()){state.profile=old;return}
 calculateMetabolism();renderDashboard();showToast("Dados salvos!");
 });
 
 // METAS
 const goalFields={calories:"goalCalories",protein:"goalProtein",carbs:"goalCarbs",fiber:"goalFiber",fat:"goalFat"};
-const nutrientLabels={calories:{label:"Calorias",unit:"kcal"},protein:{label:"Proteínas",unit:"g"},carbs:{label:"Carboidratos",unit:"g"},fiber:{label:"Fibras",unit:"g"},fat:{label:"Gorduras",unit:"g"}};
-function populateGoals(){for(const [k,id] of Object.entries(goalFields))$(id).value=state.goals[k]??""}
+const nutrientLabels={
+calories:{label:"Calorias",unit:"kcal"},
+protein:{label:"Proteínas",unit:"g"},
+carbs:{label:"Carboidratos",unit:"g"},
+fiber:{label:"Fibras",unit:"g"},
+fat:{label:"Gorduras",unit:"g"}
+};
+function populateGoals(){
+for(const [k,id] of Object.entries(goalFields))$(id).value=state.goals[k]??"";
+}
 $("goalsForm").addEventListener("submit",e=>{
-e.preventDefault();const next={};
+e.preventDefault();
+const next={};
 for(const [k,id] of Object.entries(goalFields)){
 const raw=$(id).value,v=Number(raw);
 if(raw!==""&&(!Number.isFinite(v)||v<0)){showToast("Confira os valores das metas.");return}
 next[k]=raw;
 }
-const old=state.goals;state.goals=next;
+const old=state.goals;
+state.goals=next;
 if(!saveState()){state.goals=old;return}
 renderDashboard();showToast("Metas salvas!");
 });
@@ -604,10 +750,15 @@ const p=state.profile;
 if(n(p.age)>0&&n(p.height)>0&&n(p.weight)>0){
 const tmb=10*n(p.weight)+6.25*n(p.height)-5*n(p.age)+(p.sex==="male"?5:-161);
 $("totalTDEE").innerHTML=`${fmt(tmb*n(p.activityLevel),0)} <span>kcal</span>`;
-}else $("totalTDEE").innerHTML='— <span>kcal</span>';
+}else{
+$("totalTDEE").innerHTML='— <span>kcal</span>';
+}
 renderProgress(t);
 }
-function formatDate(date){const [y,m,d]=date.split("-");return `${d}/${m}/${y}`}
+function formatDate(date){
+const [y,m,d]=date.split("-");
+return `${d}/${m}/${y}`;
+}
 function renderHistory(){
 const dates=[...new Set([...state.foods.map(x=>x.date),...state.exercises.map(x=>x.date)])].filter(Boolean).sort((a,b)=>b.localeCompare(a));
 $("historyEmpty").style.display=dates.length?"none":"block";
@@ -616,52 +767,150 @@ const t=totalsForDate(date);
 return `<tr><td>${esc(formatDate(date))}${date===currentDate()?" •":""}</td><td>${fmt(t.calories,0)} kcal</td><td>${fmt(t.protein)} g</td><td>${fmt(t.carbs)} g</td><td>${fmt(t.fiber)} g</td><td>${fmt(t.fat)} g</td><td>${fmt(t.exercise,0)} kcal</td><td><button class="btn secondary small" type="button" data-history-date="${esc(date)}">Abrir</button></td></tr>`;
 }).join("");
 }
-function renderAll(){renderFoodList();renderExerciseList();renderCustomFoods();renderDashboard();renderHistory();calculateMetabolism()}
-function changeDate(date){$("selectedDate").value=date;cancelSelectedFood();renderAll()}
+function renderAll(){
+renderFoodList();
+renderExerciseList();
+renderCustomFoods();
+renderDashboard();
+renderHistory();
+calculateMetabolism();
+}
+function changeDate(date){
+$("selectedDate").value=date;
+cancelSelectedFood();
+renderAll();
+}
 
-// BACKUP
+// BACKUP E IMPORTAÇÃO
 $("exportData").addEventListener("click",()=>{
 const blob=new Blob([JSON.stringify({app:"FitCalc",version:2,exportedAt:new Date().toISOString(),data:state},null,2)],{type:"application/json"});
 const url=URL.createObjectURL(blob),a=document.createElement("a");
-a.href=url;a.download="fitcalc-backup.json";document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
+a.href=url;
+a.download="fitcalc-backup.json";
+document.body.appendChild(a);
+a.click();
+a.remove();
+URL.revokeObjectURL(url);
 showToast("Backup exportado!");
 });
 $("importDataButton").addEventListener("click",()=>$("importDataFile").click());
 $("importDataFile").addEventListener("change",async e=>{
-const file=e.target.files[0];if(!file)return;
+const file=e.target.files[0];
+if(!file)return;
 try{
 const parsed=JSON.parse(await file.text()),d=parsed.data||parsed;
 if(!d||!Array.isArray(d.foods)||!Array.isArray(d.exercises)||!Array.isArray(d.customFoods)||!d.profile||!d.goals)throw Error("Formato inválido");
 if(!confirm("Importar o backup substituirá os dados atuais. Continuar?"))return;
 const old=state,fresh=initialState();
-state={...fresh,...d,version:2,foods:d.foods.map(x=>({...x,date:dateFromEntry(x)})),exercises:d.exercises.map(x=>({...x,date:dateFromEntry(x)})),customFoods:d.customFoods.map(x=>({fiber:0,carbs:0,fat:0,...x})),profile:{...fresh.profile,...d.profile},goals:{...fresh.goals,...d.goals}};
+state={...fresh,...d,version:2,
+foods:d.foods.map(x=>({...x,date:dateFromEntry(x)})),
+exercises:d.exercises.map(x=>({...x,date:dateFromEntry(x)})),
+customFoods:d.customFoods.map(x=>({fiber:0,carbs:0,fat:0,...x})),
+profile:{...fresh.profile,...d.profile},
+goals:{...fresh.goals,...d.goals}};
 if(!saveState()){state=old;return}
-populateProfile();populateGoals();changeDate(localDateString());showToast("Backup importado!");
-}catch(err){console.error(err);showToast("Não foi possível importar esse arquivo.")}
-finally{e.target.value=""}
+populateProfile();
+populateGoals();
+changeDate(localDateString());
+showToast("Backup importado!");
+}catch(err){
+console.error(err);
+showToast("Não foi possível importar esse arquivo.");
+}finally{
+e.target.value="";
+}
 });
 $("clearData").addEventListener("click",()=>{
 if(!confirm("Apagar todos os alimentos registrados, exercícios, metas e cadastros personalizados? Exporte um backup antes, se precisar dos dados."))return;
-const old=state;state=initialState();
+const old=state;
+state=initialState();
 if(!saveState()){state=old;return}
-populateProfile();populateGoals();$("foodSearch").value="";changeDate(localDateString());searchFoods();showToast("Dados apagados.");
+populateProfile();
+populateGoals();
+$("foodSearch").value="";
+changeDate(localDateString());
+searchFoods();
+showToast("Dados apagados.");
 });
 
-// EVENTOS
+// EVENTOS DA INTERFACE
 $("foodSearch").addEventListener("input",searchFoods);
-$("foodResults").addEventListener("click",e=>{const b=e.target.closest("[data-food-id]");if(b)selectFood(b.dataset.foodId)});
-$("foodList").addEventListener("click",e=>{const b=e.target.closest("[data-remove-food]");if(b)removeFood(b.dataset.removeFood)});
-$("exerciseList").addEventListener("click",e=>{const b=e.target.closest("[data-remove-exercise]");if(b)removeExercise(b.dataset.removeExercise)});
-$("customFoodList").addEventListener("click",e=>{const b=e.target.closest("[data-remove-custom]");if(b)removeCustomFood(b.dataset.removeCustom)});
-$("historyBody").addEventListener("click",e=>{const b=e.target.closest("[data-history-date]");if(b){changeDate(b.dataset.historyDate);$("painel").scrollIntoView({behavior:"smooth"})}});
-$("selectedDate").addEventListener("change",()=>{if($("selectedDate").value)changeDate($("selectedDate").value)});
+$("foodResults").addEventListener("click",e=>{
+const b=e.target.closest("[data-food-id]");
+if(b)selectFood(b.dataset.foodId);
+});
+$("foodList").addEventListener("click",e=>{
+const b=e.target.closest("[data-remove-food]");
+if(b)removeFood(b.dataset.removeFood);
+});
+$("exerciseList").addEventListener("click",e=>{
+const b=e.target.closest("[data-remove-exercise]");
+if(b)removeExercise(b.dataset.removeExercise);
+});
+$("customFoodList").addEventListener("click",e=>{
+const b=e.target.closest("[data-remove-custom]");
+if(b)removeCustomFood(b.dataset.removeCustom);
+});
+$("historyBody").addEventListener("click",e=>{
+const b=e.target.closest("[data-history-date]");
+if(b){
+changeDate(b.dataset.historyDate);
+$("painel").scrollIntoView({behavior:"smooth"});
+}
+});
+$("selectedDate").addEventListener("change",()=>{
+if($("selectedDate").value)changeDate($("selectedDate").value);
+});
 $("todayButton").addEventListener("click",()=>changeDate(localDateString()));
-$("previousDay").addEventListener("click",()=>{const d=new Date(currentDate()+"T12:00:00");d.setDate(d.getDate()-1);changeDate(localDateString(d))});
-$("nextDay").addEventListener("click",()=>{const d=new Date(currentDate()+"T12:00:00");d.setDate(d.getDate()+1);changeDate(localDateString(d))});
+$("previousDay").addEventListener("click",()=>{
+const d=new Date(currentDate()+"T12:00:00");
+d.setDate(d.getDate()-1);
+changeDate(localDateString(d));
+});
+$("nextDay").addEventListener("click",()=>{
+const d=new Date(currentDate()+"T12:00:00");
+d.setDate(d.getDate()+1);
+changeDate(localDateString(d));
+});
 
+// ANIMAÇÕES DE SCROLL
+function initScrollAnimations(){
+const reducedMotion=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const targets=document.querySelectorAll(
+".hero .eyebrow, .hero h1, .hero p, .hero .actions, .section > .heading, .section > .card, .section > .grid, footer"
+);
+
+if(reducedMotion||!("IntersectionObserver" in window)){
+targets.forEach(el=>el.classList.add("is-visible"));
+return;
+}
+
+const observer=new IntersectionObserver((entries,obs)=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add("is-visible");
+obs.unobserve(entry.target);
+}
+});
+},{threshold:0.12,rootMargin:"0px 0px -35px 0px"});
+
+targets.forEach((el,index)=>{
+el.classList.add("reveal");
+if(index%4===1)el.classList.add("reveal-delay-1");
+if(index%4===2)el.classList.add("reveal-delay-2");
+if(index%4===3)el.classList.add("reveal-delay-3");
+observer.observe(el);
+});
+}
+
+// INICIALIZAÇÃO
 function initialize(){
 $("selectedDate").value=localDateString();
-populateProfile();populateGoals();searchFoods();renderAll();
+populateProfile();
+populateGoals();
+searchFoods();
+renderAll();
+initScrollAnimations();
 }
 initialize();
 </script>
